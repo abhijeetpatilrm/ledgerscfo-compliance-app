@@ -1,51 +1,131 @@
-# Compliance Tracker App
+# LedgerSCFO Compliance Tracker
 
-A simple full-stack app to manage compliance tasks for multiple clients.
+A full-stack compliance tracking application for managing client-wise tasks, due dates, and completion status.
 
-## Tech Stack
+## 1) Project Title
 
-- React
-- Vite
-- Tailwind CSS
-- Axios
-- Node.js
-- Express
-- MongoDB
+**LedgerSCFO Compliance Tracker**
 
-## Project Structure
+## 2) Live Demo Link (Frontend)
 
-- `server/` - Express + MongoDB API
-- `client/` - React frontend with Vite + Tailwind
+- Frontend: https://ledgerscfo-compliance-app.vercel.app/
+- Deployed API: https://ledgerscfo-compliance-app.onrender.com
 
-## Backend Setup (`server`)
+## 3) Features
 
-1. Create a `.env` file in `server/` with:
+- Client-wise compliance dashboard
+- Task creation and status updates (Pending/Completed)
+- Overdue highlighting and task summaries
+- Search, filter, and due-date sorting
+- Seed script for sample dataset
 
-	```env
-	MONGO_URI=your_mongodb_connection_string
-	PORT=5000
-	```
+## 4) Tech Stack
 
-2. Install and run:
+- **Frontend:** React, Vite, Tailwind CSS, Axios
+- **Backend:** Node.js, Express
+- **Database:** MongoDB (Mongoose)
 
-	```bash
-	npm install
-	npm run dev
-	```
+## 5) Project Structure
 
-Backend runs on `http://localhost:5000` and `GET /` returns `API is running`.
+```text
+ledgerscfo-compliance-app/
+├─ client/
+│  ├─ src/
+│  │  ├─ components/
+│  │  ├─ pages/
+│  │  └─ services/
+├─ server/
+│  ├─ controllers/
+│  ├─ models/
+│  ├─ routes/
+│  ├─ services/
+│  ├─ utils/
+│  ├─ seed.js
+│  └─ server.js
+└─ README.md
+```
 
-## Frontend Setup (`client`)
+## 6) Setup Instructions
 
-1. Install and run:
+### Backend (`server`)
 
-	```bash
-	npm install
-	npm run dev
-	```
-
-Optional API URL override in `client/.env`:
+1. Create `server/.env`:
 
 ```env
-VITE_API_URL=https://ledgerscfo-compliance-app.onrender.com
+MONGO_URI=your_mongodb_connection_string
+PORT=5000
 ```
+
+2. Install dependencies and run:
+
+```bash
+cd server
+npm install
+npm run dev
+```
+
+3. (Optional) Seed sample data:
+
+```bash
+npm run seed
+```
+
+### Frontend (`client`)
+
+1. Create `client/.env` (optional override):
+
+```env
+VITE_API_BASE_URL=https://ledgerscfo-compliance-app.onrender.com
+```
+
+2. Install dependencies and run:
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+## 7) API Endpoints
+
+Base URL: `https://ledgerscfo-compliance-app.onrender.com`
+
+- `GET /` → API health check
+- `GET /clients` → list all clients
+- `GET /tasks/:clientId` → list tasks for a client
+- `POST /tasks` → create task
+- `PATCH /tasks/:id/status` → update task status
+
+### Sample `POST /tasks` body
+
+```json
+{
+  "title": "GST Filing",
+  "description": "File monthly GST return",
+  "category": "Tax",
+  "dueDate": "2026-04-30T00:00:00.000Z",
+  "clientId": "<client_object_id>",
+  "priority": "High"
+}
+```
+
+## 8) Assumptions
+
+- Each task belongs to exactly one client.
+- Task status is limited to `Pending` or `Completed`.
+- Due date is required at task creation.
+- Frontend consumes the REST API directly.
+
+## 9) Tradeoffs
+
+- Prioritized clean modular architecture over advanced auth/roles.
+- No background jobs/reminder engine in MVP.
+- Minimal validation/UI complexity for faster delivery.
+
+## 10) Future Improvements
+
+- Authentication and role-based access control
+- File attachments and compliance document vault
+- Notifications/reminders (email/WhatsApp)
+- Audit logs and activity history
+- Pagination and server-side filtering for scale
