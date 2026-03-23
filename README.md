@@ -47,5 +47,5 @@ Backend runs on `http://localhost:5000` and `GET /` returns `API is running`.
 Optional API URL override in `client/.env`:
 
 ```env
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=https://ledgerscfo-compliance-app.onrender.com
 ```
