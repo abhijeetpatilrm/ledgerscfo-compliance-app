@@ -2,18 +2,20 @@ import mongoose from "mongoose";
 
 const clientSchema = new mongoose.Schema(
   {
-    company_name: {
+    companyName: {
       type: String,
       required: true,
       trim: true,
+      alias: "company_name",
     },
     country: {
       type: String,
       trim: true,
     },
-    entity_type: {
+    entityType: {
       type: String,
       trim: true,
+      alias: "entity_type",
     },
   },
   {

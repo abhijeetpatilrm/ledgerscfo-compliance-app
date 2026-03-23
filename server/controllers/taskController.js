@@ -23,6 +23,8 @@ const getTasksByClientId = async (req, res) => {
       data: tasks,
     });
   } catch (error) {
+    console.error("getTasksByClientId error:", error);
+
     return res.status(500).json({
       success: false,
       message: "Failed to fetch tasks",
@@ -67,6 +69,8 @@ const createTask = async (req, res) => {
       data: task,
     });
   } catch (error) {
+    console.error("createTask error:", error);
+
     return res.status(500).json({
       success: false,
       message: "Failed to create task",
@@ -112,6 +116,8 @@ const updateTaskStatus = async (req, res) => {
       data: updatedTask,
     });
   } catch (error) {
+    console.error("updateTaskStatus error:", error);
+
     return res.status(500).json({
       success: false,
       message: "Failed to update task status",

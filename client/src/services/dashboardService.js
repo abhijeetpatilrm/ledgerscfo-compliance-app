@@ -1,8 +1,21 @@
 import api from "./api";
 
+const normalizeClient = (client) => ({
+  ...client,
+  companyName: client.companyName || client.company_name || "Unnamed Client",
+  entityType: client.entityType || client.entity_type || "",
+});
+
 export const fetchClients = async () => {
   const response = await api.get("/clients");
-  return response.data;
+  const payload = response.data;
+
+  return {
+    ...payload,
+    data: Array.isArray(payload?.data)
+      ? payload.data.map(normalizeClient)
+      : [],
+  };
 };
 
 export const fetchTasksByClientId = async (clientId) => {

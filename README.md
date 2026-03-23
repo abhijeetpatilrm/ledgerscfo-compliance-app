@@ -23,6 +23,7 @@ A simple full-stack app to manage compliance tasks for multiple clients.
 
 	```env
 	MONGO_URI=your_mongodb_connection_string
+	PORT=5000
 	```
 
 2. Install and run:

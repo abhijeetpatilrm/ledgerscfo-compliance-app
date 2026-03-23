@@ -115,9 +115,9 @@ const seed = async () => {
     await Client.deleteMany({});
 
     const mappedClients = clientSeedData.map((client) => ({
-      company_name: client.companyName,
+      companyName: client.companyName,
       country: client.country,
-      entity_type: client.entityType,
+      entityType: client.entityType,
     }));
 
     const insertedClients = await Client.insertMany(mappedClients);

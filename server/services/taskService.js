@@ -12,7 +12,7 @@ const updateTaskStatus = async (taskId, status) => {
   return Task.findByIdAndUpdate(
     taskId,
     { status },
-    { new: true, runValidators: true }
+    { returnDocument: "after", runValidators: true }
   );
 };
 

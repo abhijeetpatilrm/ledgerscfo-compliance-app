@@ -10,6 +10,8 @@ const getClients = async (_req, res) => {
       data: clients,
     });
   } catch (error) {
+    console.error("getClients error:", error);
+
     return res.status(500).json({
       success: false,
       message: "Failed to fetch clients",
