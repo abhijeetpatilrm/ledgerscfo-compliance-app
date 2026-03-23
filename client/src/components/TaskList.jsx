@@ -24,7 +24,7 @@ const TaskList = ({ tasks, isLoading, onMarkCompleted, updatingTaskId }) => {
   if (!tasks.length) {
     return (
       <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 text-gray-600">
-        No tasks found for this client.
+        No tasks found
       </div>
     );
   }
@@ -37,7 +37,7 @@ const TaskList = ({ tasks, isLoading, onMarkCompleted, updatingTaskId }) => {
         return (
           <article
             key={task._id}
-            className={`rounded-lg shadow-sm p-4 hover:shadow-md transition border ${
+            className={`rounded-lg shadow-sm p-4 hover:shadow-md hover:-translate-y-0.5 transition duration-200 ease-out border ${
               isOverdue ? "bg-red-50 border-red-200" : "bg-white border-gray-200"
             }`}
           >
